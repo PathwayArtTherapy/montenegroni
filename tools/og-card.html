@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OG card generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Limelight&family=Poiret+One&family=DM+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#333;display:grid;place-items:center;min-height:100vh}canvas{max-width:100%;height:auto;box-shadow:0 10px 40px #0008}</style>
+</head>
+<body>
+<!-- Draws the 1200x630 link-preview card. Open this page, right-click the image, "Save image as" assets/og-image.png -->
+<canvas id="c" width="1200" height="630"></canvas>
+<script>
+var C = { campari:'#C41E3A', orange:'#E8702A', adriatic:'#1F6F8B', lemon:'#F9D65C', cream:'#FBF3E4', navy:'#1B2A41', gold:'#C9A24B', white:'#FFFDF8' };
+function draw() {
+  var c = document.getElementById('c'), x = c.getContext('2d'), W = 1200, H = 630;
+  x.fillStyle = C.cream; x.fillRect(0, 0, W, H);
+
+  // sunburst
+  x.save(); x.translate(W/2, H*0.62); x.fillStyle = C.lemon; x.globalAlpha = .55;
+  for (var i = 0; i < 12; i++) { x.rotate(Math.PI/6); x.beginPath(); x.moveTo(0,0); x.lineTo(-70,-1400); x.lineTo(70,-1400); x.closePath(); x.fill(); }
+  x.restore();
+
+  // tin frame
+  function rr(px, py, w, h, r) { x.beginPath(); x.moveTo(px+r, py); x.arcTo(px+w, py, px+w, py+h, r); x.arcTo(px+w, py+h, px, py+h, r); x.arcTo(px, py+h, px, py, r); x.arcTo(px, py, px+w, py, r); x.closePath(); }
+  x.fillStyle = C.campari; rr(58, 58, 1090, 520, 30); x.fill();
+  x.fillStyle = C.white; rr(50, 50, 1090, 520, 30); x.fill();
+  x.lineWidth = 6; x.strokeStyle = C.navy; rr(50, 50, 1090, 520, 30); x.stroke();
+  x.lineWidth = 4; x.strokeStyle = C.campari; rr(66, 66, 1058, 488, 22); x.stroke();
+  x.lineWidth = 3; x.strokeStyle = C.gold; rr(78, 78, 1034, 464, 16); x.stroke();
+
+  // sun, waves, boat (right side)
+  x.save(); x.beginPath(); rr(82, 82, 1026, 456, 14); x.clip();
+  x.fillStyle = C.lemon; x.strokeStyle = C.navy; x.lineWidth = 5; x.lineCap = 'round';
+  x.beginPath(); x.arc(985, 215, 78, 0, Math.PI*2); x.fill(); x.stroke();
+  [[985,105,985,125],[1063,137,1049,151],[907,137,921,151],[1095,215,1075,215],[875,215,895,215]].forEach(function(l){ x.beginPath(); x.moveTo(l[0],l[1]); x.lineTo(l[2],l[3]); x.stroke(); });
+  x.fillStyle = C.white; x.fillRect(840, 290, 300, 120);
+  x.strokeStyle = C.adriatic; x.lineWidth = 7;
+  [312, 350, 388].forEach(function (y) {
+    x.beginPath(); x.moveTo(840, y);
+    for (var wx = 840; wx < 1120; wx += 46) x.quadraticCurveTo(wx+23, y-22, wx+46, y);
+    x.stroke();
+  });
+  x.fillStyle = C.campari; x.strokeStyle = C.navy; x.lineWidth = 5; x.lineJoin = 'round';
+  x.beginPath(); x.moveTo(940,318); x.lineTo(1050,318); x.lineTo(1032,348); x.lineTo(958,348); x.closePath(); x.fill(); x.stroke();
+  x.beginPath(); x.moveTo(992,318); x.lineTo(992,252); x.stroke();
+  x.fillStyle = C.orange; x.beginPath(); x.moveTo(998,252); x.lineTo(1044,310); x.lineTo(998,310); x.closePath(); x.fill(); x.stroke();
+  x.restore();
+
+  // stamp
+  x.save(); x.translate(130, 138); x.rotate(-0.04);
+  x.font = '700 22px "DM Sans"'; x.fillStyle = C.campari; x.strokeStyle = C.campari; x.lineWidth = 3; x.letterSpacing = '6px';
+  var s = 'SAVE THE DATE'; var sw = x.measureText(s).width;
+  x.strokeRect(-14, -30, sw + 22, 46); x.fillText(s, 0, 4); x.restore();
+
+  // title
+  x.textBaseline = 'alphabetic'; x.letterSpacing = '2px';
+  x.font = '400 104px Limelight'; x.fillStyle = C.navy; x.fillText('Dylan', 120, 252);
+  var dw = x.measureText('Dylan').width;
+  x.font = '400 72px Limelight'; x.fillStyle = C.campari; x.fillText('&', 120 + dw + 28, 250);
+  x.font = '400 104px Limelight'; x.fillStyle = C.navy; x.fillText('Lou Lou', 120, 348);
+
+  x.font = '400 30px "Poiret One"'; x.fillStyle = C.navy; x.letterSpacing = '7px';
+  x.fillText('A CELEBRATION IN PERAST', 122, 400);
+
+  x.font = '500 25px "DM Sans"'; x.letterSpacing = '0px';
+  x.fillText("We're eloping… and then we're throwing a party.", 122, 440);
+
+  // rule + details
+  x.strokeStyle = C.navy; x.lineWidth = 3; x.beginPath(); x.moveTo(122, 462); x.lineTo(1076, 462); x.stroke();
+  x.font = '700 17px "DM Sans"'; x.fillStyle = C.adriatic; x.letterSpacing = '4px';
+  x.fillText('WHERE', 122, 492); x.fillText('WHEN', 470, 492); x.fillText('THE BIG DAY', 800, 492);
+  x.font = '400 30px "Poiret One"'; x.fillStyle = C.navy; x.letterSpacing = '1px';
+  x.fillText('Perast, Montenegro', 122, 526); x.fillText('23 – 30 June 2027', 470, 526); x.fillText('Sat 26 June 2027', 800, 526);
+}
+document.fonts.ready.then(draw);
+</script>
+</body>
+</html>

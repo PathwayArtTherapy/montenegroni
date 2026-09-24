@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Dylan and Lou Lou//Perast Celebration//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:celebration-20270626@perast
+DTSTAMP:20260924T000000Z
+DTSTART;VALUE=DATE:20270626
+DTEND;VALUE=DATE:20270627
+SUMMARY:Dylan & Lou Lou's Celebration
+LOCATION:Perast\, Bay of Kotor\, Montenegro
+DESCRIPTION:The main celebration day. Theme: Euro summer cocktail\, colourful!
+END:VEVENT
+END:VCALENDAR

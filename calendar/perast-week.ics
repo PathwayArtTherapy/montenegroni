@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Dylan and Lou Lou//Perast Celebration//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:perast-week-2027@perast
+DTSTAMP:20260924T000000Z
+DTSTART;VALUE=DATE:20270623
+DTEND;VALUE=DATE:20270701
+SUMMARY:Perast week with Dylan & Lou Lou
+LOCATION:Perast\, Bay of Kotor\, Montenegro
+DESCRIPTION:Swimming\, eating\, sunshine. Main celebration on Saturday 26 June.
+END:VEVENT
+END:VCALENDAR
