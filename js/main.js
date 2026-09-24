@@ -8,18 +8,14 @@
     if (cfg[key]) el.textContent = cfg[key];
   });
 
-  /* ---------- WhatsApp links ---------- */
-  var number = String(cfg.WHATSAPP_NUMBER || '').replace(/\D/g, '');
-  document.querySelectorAll('.js-whatsapp').forEach(function (a) {
+  /* ---------- WhatsApp links (one button per person) ---------- */
+  var numbers = cfg.WHATSAPP || {};
+  document.querySelectorAll('[data-wa]').forEach(function (a) {
+    var number = String(numbers[a.getAttribute('data-wa')] || '').replace(/\D/g, '');
     if (number) {
       a.href = 'https://wa.me/' + number;
     } else {
-      a.href = '#';
-      a.classList.add('is-placeholder');
-      a.setAttribute('aria-disabled', 'true');
-      a.removeAttribute('target');
-      a.textContent = 'WhatsApp number coming soon';
-      a.addEventListener('click', function (e) { e.preventDefault(); });
+      a.hidden = true; // no number yet: hide that person's button
     }
   });
 

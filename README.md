@@ -1,4 +1,4 @@
-# Dylan & Lou Lou — Perast celebration site
+# Lou Lou & Dylan — Perast celebration site
 
 A one-page, mobile-first save-the-date, info hub and RSVP form.
 Plain HTML, CSS and JavaScript. No build step: open `index.html` in a browser and it works.
@@ -8,7 +8,7 @@ Plain HTML, CSS and JavaScript. No build step: open `index.html` in a browser an
 | What | File |
 |---|---|
 | All the words on the page | `index.html` |
-| Placeholders: WhatsApp number, form endpoint, house cost, deadlines | `js/config.js` |
+| WhatsApp numbers, form endpoint, house cost, deadlines | `js/config.js` |
 | Colours, fonts, spacing | `css/style.css` (colours are at the very top) |
 | Form behaviour, countdown, WhatsApp buttons | `js/main.js` |
 | Link-preview image (WhatsApp card) | `assets/og-image.png`, generated from `tools/og-card.html` |
@@ -18,8 +18,8 @@ Plain HTML, CSS and JavaScript. No build step: open `index.html` in a browser an
 
 Open `js/config.js`. Every placeholder is there with a comment.
 
-- **WhatsApp number**: international format, digits only, e.g. `61412345678`. Until it's set, the WhatsApp buttons read "WhatsApp number coming soon".
-- **House cost**: replace `HOUSE_COST_NOTE` with the real wording when you have it.
+- **WhatsApp numbers**: one each for Lou Lou and Dylan, international format, digits only, e.g. `61412345678`. If one is left blank, that person's button is hidden.
+- **House cost**: `HOUSE_COST_NOTE` is shown on the page as written.
 - **Deadlines**: `HOUSE_EOI_DEADLINE` and `RSVP_DEADLINE` are plain text, so write them how you'd say them.
 
 ## Connecting the RSVP form (recommended: Formspree)
@@ -63,8 +63,7 @@ Then open http://localhost:8125.
 
 ## Still to confirm before launch
 
-- [ ] WhatsApp number
-- [ ] House cost, what it includes, and deposit timing
+- [ ] Deposit timing and what the house cost includes
 - [ ] Exact shuttle details and cost
 - [ ] Domain name, if wanted
 - [ ] Photos of Perast or the house (optional)
