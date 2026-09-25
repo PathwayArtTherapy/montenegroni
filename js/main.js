@@ -124,7 +124,10 @@
       }
       if (el.value !== '') data[el.name] = el.value;
     });
-    data._subject = 'RSVP: ' + (data.name || 'someone') + ' — ' + data.plan;
+    data.subject = 'RSVP: ' + (data.name || 'someone') + ' — ' + data.plan;
+    data.from_name = 'Perast RSVP';
+    if (data.email) data.replyto = data.email; // so hitting Reply goes to the guest
+    if (cfg.WEB3FORMS_ACCESS_KEY) data.access_key = cfg.WEB3FORMS_ACCESS_KEY;
     return data;
   }
 
@@ -169,8 +172,10 @@
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload)
     }).then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      finish(plan);
+      return res.json().catch(function () { return {}; }).then(function (json) {
+        if (!res.ok || json.success === false) throw new Error((json && json.message) || ('HTTP ' + res.status));
+        finish(plan);
+      });
     }).catch(function (err) {
       console.error(err);
       submitBtn.disabled = false;

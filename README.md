@@ -22,20 +22,13 @@ Open `js/config.js`. Every placeholder is there with a comment.
 - **House cost**: `HOUSE_COST_NOTE` is shown on the page as written.
 - **Deadlines**: `HOUSE_EOI_DEADLINE` and `RSVP_DEADLINE` are plain text, so write them how you'd say them.
 
-## Connecting the RSVP form (recommended: Formspree)
+## The RSVP form (Web3Forms)
 
-The simplest free option that gives you a spreadsheet-style inbox and an email per submission.
+RSVPs are sent by Web3Forms, a free service that emails each one to the address the access key was created with. The key is in `WEB3FORMS_ACCESS_KEY` in `js/config.js`. It's designed to be public, so it's fine in the code.
 
-1. Go to formspree.io, sign up (free), and click **New form**. Name it "Perast RSVP".
-2. Copy the form's endpoint. It looks like `https://formspree.io/f/abcdwxyz`.
-3. Paste it into `FORM_ENDPOINT` in `js/config.js`.
-4. Submit a test RSVP from the site. Formspree emails you on every submission and keeps them all in its dashboard, where you can export to CSV.
+Each email has the subject "RSVP: name — what they chose", and hitting Reply goes straight to the guest. The free plan allows 250 submissions a month. Sign in at web3forms.com to see past submissions or change the destination email.
 
-The free plan allows 50 submissions a month. If the guest list is bigger than that, either upgrade for one month around the RSVP deadline, or use the Google Sheets alternative below.
-
-**Alternative: Google Sheets via Apps Script (free, unlimited).** Create a Google Sheet, open Extensions → Apps Script, paste a small `doPost` that appends the JSON fields to a row and calls `MailApp.sendEmail`, deploy as a Web App ("Anyone" can access), and put the web-app URL in `FORM_ENDPOINT`. More setup, but no limits and the answers land straight in a sheet.
-
-While `FORM_ENDPOINT` is empty, the form only pretends to send on a local preview. On the live site it tells guests to message you on WhatsApp instead, so nobody thinks they've RSVP'd when nothing was sent.
+To switch sending off, set `FORM_ENDPOINT` to `""`. On the live site the form will then ask guests to message you on WhatsApp instead of pretending to send.
 
 ## Link preview image
 

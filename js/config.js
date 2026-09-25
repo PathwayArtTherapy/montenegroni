@@ -11,10 +11,12 @@ window.SITE_CONFIG = {
     DYLAN: "61439731210",
   },
 
-  // Where the RSVP form sends its answers.
-  // Formspree example: "https://formspree.io/f/abcdwxyz"  (see README)
-  // Leave as "" while testing; the form will pretend to send.
-  FORM_ENDPOINT: "",
+  // Where the RSVP form sends its answers: Web3Forms (free), which emails
+  // each RSVP to the address the access key was created with.
+  // The access key is designed to be public, so it's fine in this file.
+  // Set FORM_ENDPOINT to "" to switch sending off.
+  FORM_ENDPOINT: "https://api.web3forms.com/submit",
+  WEB3FORMS_ACCESS_KEY: "5042ef81-8530-4516-bb1e-46bf82b2a75f",
 
   // House cost, shown on the page. Plain text, write it how you'd say it.
   HOUSE_COST_NOTE: "$600 AUD per person ($1,200 per couple) for the 7 nights",
