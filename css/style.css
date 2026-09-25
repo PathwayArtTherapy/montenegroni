@@ -553,3 +553,5 @@ html.env-lock, html.env-lock body { overflow: hidden; }
 /* Adults and Kids: always side by side, same size, boxes lined up */
 .field-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: end; }
 .hint-under-pair { margin-top: -8px; }
+
+.cal-label { text-align: center; margin: 0 0 12px; font: 700 .72rem/1 var(--body); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
