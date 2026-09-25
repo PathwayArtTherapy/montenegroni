@@ -526,3 +526,18 @@ html.env-lock, html.env-lock body { overflow: hidden; }
 .envelope-intro.letter-present .env-letter-photo { flex: 0 0 auto; aspect-ratio: 4 / 5; max-height: 1000px; opacity: 1; margin-top: 5%; margin-bottom: auto; }
 .envelope-intro.letter-present .env-letter-inner { flex: 0 0 auto; }
 
+
+/* Envelope: pulse around the seal, and a peek of the photo as the card rises */
+.env-seal::before {
+  content: ""; position: absolute; inset: -6%; border-radius: 50%; border: 2px solid var(--gold);
+  animation: seal-pulse 2.2s ease-out infinite; pointer-events: none;
+}
+@keyframes seal-pulse { 0% { transform: scale(.95); opacity: .9; } 100% { transform: scale(1.45); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .env-seal::before { animation: none; opacity: 0; } }
+
+.env-letter { overflow: hidden; }
+.env-letter-photo { transition: max-height .8s ease, opacity .6s ease .15s, width .8s ease, margin .8s ease; }
+.envelope-intro.letter-out .env-letter-photo { flex: 0 0 auto; width: 30%; aspect-ratio: 4 / 5; max-height: 1000px; opacity: 1; margin-top: 4%; }
+.envelope-intro.letter-out .env-letter { transform: translateY(-78%); }
+.envelope-intro.letter-present .env-letter { transform: none; }
+.envelope-intro.letter-present .env-letter-photo { width: 74%; margin-top: 5%; }

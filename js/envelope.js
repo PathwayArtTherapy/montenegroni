@@ -49,7 +49,7 @@
           '</svg>' +
         '</span>' +
       '</button>' +
-      '<p class="env-hint">Tap to open</p>' +
+      '<p class="env-hint">Tap seal to open</p>' +
     '</div>';
 
   document.documentElement.classList.add('env-lock');
@@ -133,8 +133,8 @@
     setTimeout(function () { overlay.classList.add('flap-open'); }, 280);  // flap swings up
     setTimeout(function () { overlay.classList.add('flap-behind'); }, 700); // flap tucks behind the letter
     setTimeout(function () { overlay.classList.add('letter-out'); }, 900);  // letter rises
-    setTimeout(function () { overlay.classList.add('letter-present'); presenting = true; }, 1750); // envelope fades, card unfolds with the photo
-    finish(5200);
+    setTimeout(function () { overlay.classList.add('letter-present'); presenting = true; }, 2500); // envelope fades, card unfolds with the photo
+    finish(5900);
   }
   var presenting = false, finished = false, finishTimer = null;
   function finish(delay) {
