@@ -11,7 +11,7 @@ Plain HTML, CSS and JavaScript. No build step: open `index.html` in a browser an
 | WhatsApp numbers, form endpoint, house cost, deadlines | `js/config.js` |
 | Colours, fonts, spacing | `css/style.css` (colours are at the very top) |
 | Form behaviour, countdown, WhatsApp buttons | `js/main.js` |
-| Link-preview image (WhatsApp card) | `assets/og-image.png`, generated from `tools/og-card.html` |
+| Link-preview image (WhatsApp card) | `assets/og-envelope.png`, generated from `tools/og-card.html` |
 | "Add to calendar" files | `calendar/celebration.ics` and `calendar/perast-week.ics` |
 
 ## Filling in the placeholders
@@ -32,7 +32,7 @@ To switch sending off, set `FORM_ENDPOINT` to `""`. On the live site the form wi
 
 ## Link preview image
 
-WhatsApp shows `assets/og-image.png` when the link is shared. To regenerate it after changing the wording, open `tools/og-card.html` in a browser, right-click the card and save it as `assets/og-image.png`.
+iMessage and WhatsApp show `assets/og-envelope.png` (the sealed envelope) with the title "Tap the seal to open". To redraw it, open `tools/og-card.html` in a browser, right-click the image and save it. Save it under a new file name and update the `og:image` tag, because messaging apps cache preview images by address.
 
 The link-preview tags point at https://montenegroni.site. If the domain ever changes, update the `og:image` and `og:url` tags at the top of `index.html` and `gallery.html`, and the `CNAME` file.
 
