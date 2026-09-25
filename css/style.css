@@ -433,3 +433,6 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 8px); }
 .details-section .hero-copy { margin-top: 40px; }
 .photo-band { scroll-margin-top: var(--topbar-h); }
 .theme-line { font-family: var(--deco); font-weight: 700; font-size: 1.2rem; line-height: 1.3; letter-spacing: .02em; padding: 12px 0 0; border-top: 1px solid var(--gold); }
+
+/* Keep names on one line in the WhatsApp buttons */
+.wa-group .btn { white-space: nowrap; padding-left: 12px; padding-right: 12px; }

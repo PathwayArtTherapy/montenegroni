@@ -186,7 +186,8 @@
       document.getElementById('thanks-copy').textContent = "We'll miss you! Thanks for letting us know, and sending love right back.";
     }
     thanks.hidden = false;
-    thanks.focus();
+    thanks.focus({ preventScroll: true });
     thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (window.celebrate) setTimeout(function () { window.celebrate(plan === 'cant' ? 'love' : 'party'); }, 450);
   }
 })();
