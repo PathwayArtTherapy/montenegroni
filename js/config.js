@@ -18,6 +18,10 @@ window.SITE_CONFIG = {
   FORM_ENDPOINT: "https://api.web3forms.com/submit",
   WEB3FORMS_ACCESS_KEY: "5042ef81-8530-4516-bb1e-46bf82b2a75f",
 
+  // Google Sheet that collects every RSVP as a row (see tools/google-sheet-script.gs).
+  // Paste the Apps Script web app URL here. Leave as "" to switch it off.
+  SHEET_URL: "",
+
   // House cost, shown on the page. Plain text, write it how you'd say it.
   HOUSE_COST_NOTE: "$600 AUD per person ($1,200 per couple) for the 7 nights",
 

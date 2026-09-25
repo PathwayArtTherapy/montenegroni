@@ -30,6 +30,17 @@ Each email has the subject "RSVP: name — what they chose", and hitting Reply g
 
 To switch sending off, set `FORM_ENDPOINT` to `""`. On the live site the form will then ask guests to message you on WhatsApp instead of pretending to send.
 
+## RSVPs in a Google Sheet (optional)
+
+Each RSVP can also be added as a row in a Google Sheet, which you can open in Excel or download as an Excel file.
+
+1. Create a blank Google Sheet, then open **Extensions → Apps Script**.
+2. Delete what's there, paste in everything from `tools/google-sheet-script.gs`, and click **Save**.
+3. Click **Deploy → New deployment**, choose **Web app**, set **Execute as: Me** and **Who has access: Anyone**, then **Deploy**. Approve the access Google asks for.
+4. Copy the **Web app URL** into `SHEET_URL` in `js/config.js`.
+
+The first RSVP creates an "RSVPs" tab with headings. A row is only added after Web3Forms confirms the email, so retries don't create duplicates.
+
 ## Link preview image
 
 iMessage and WhatsApp show `assets/og-envelope.png` (the sealed envelope) with the title "Tap the seal to open". To redraw it, open `tools/og-card.html` in a browser, right-click the image and save it. Save it under a new file name and update the `og:image` tag, because messaging apps cache preview images by address.

@@ -176,6 +176,7 @@
     }).then(function (res) {
       return res.json().catch(function () { return {}; }).then(function (json) {
         if (!res.ok || json.success === false) throw new Error((json && json.message) || ('HTTP ' + res.status));
+        sendToSheet(payload);
         finish(plan);
       });
     }).catch(function (err) {
@@ -185,6 +186,18 @@
       showError('Hmm, that didn\'t send. Please try again, or message us on WhatsApp.');
     });
   });
+
+  // Copy the RSVP into the Google Sheet too (fire and forget: the email is the main record).
+  function sendToSheet(payload) {
+    var url = (cfg.SHEET_URL || '').trim();
+    if (!url) return;
+    var row = {};
+    Object.keys(payload).forEach(function (k) { if (k !== 'access_key') row[k] = payload[k]; });
+    try {
+      fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(row) })
+        .catch(function (err) { console.warn('Sheet copy failed', err); });
+    } catch (e) {}
+  }
 
   function finish(plan) {
     form.hidden = true;
