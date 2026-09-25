@@ -546,3 +546,6 @@ html.env-lock, html.env-lock body { overflow: hidden; }
 .thanks .thanks-title { font-family: var(--display); font-weight: 400; font-size: clamp(1.7rem, 8vw, 2.4rem); line-height: 1.1; letter-spacing: .06em; text-transform: uppercase; color: var(--navy); margin: 4px 0 12px; }
 .thanks-message { font-family: var(--deco); font-weight: 700; font-size: 1.25rem; line-height: 1.35; margin: 0 auto 12px; max-width: 420px; }
 .thanks-small { font-size: .92rem; opacity: .8; }
+
+/* Leave room for the sticky menu when gliding to the Name(s) box */
+.rsvp-form .field { scroll-margin-top: calc(var(--topbar-h) + 20px); }

@@ -61,8 +61,7 @@
   document.body.appendChild(overlay);
 
   /* A little paper sound, made on the spot (no audio file):
-     a soft snap as the seal breaks, a rustle as the flap lifts,
-     and a gentle slide as the card comes out. */
+     a soft snap as the seal breaks and a rustle as the flap lifts. */
   function playEnvelopeSound() {
     var AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
@@ -101,11 +100,6 @@
         }
         p.linearRampToValueAtTime(0, s + dur + 0.02);
       }
-      function slide(p, s, dur, peak) {
-        p.linearRampToValueAtTime(peak, s + dur * 0.35);
-        p.linearRampToValueAtTime(peak * 0.6, s + dur * 0.8);
-        p.linearRampToValueAtTime(0, s + dur);
-      }
 
       // 1. The seal breaking: a quick crack, low thump underneath.
       burst(t0, 0.06, 2400, 1.2, 0.9, snap);
@@ -113,10 +107,6 @@
       // 2. The flap lifting: a papery rustle.
       burst(t0 + 0.28, 0.55, 3200, 0.8, 0.28, crinkle);
       burst(t0 + 0.30, 0.50, 6500, 1.0, 0.12, crinkle);
-      // 3. The card sliding out: a soft, smooth swish that rises in pitch.
-      var bp = burst(t0 + 0.9, 0.8, 1200, 0.7, 0.2, slide);
-      bp.frequency.setValueAtTime(900, t0 + 0.9);
-      bp.frequency.linearRampToValueAtTime(2600, t0 + 1.7);
 
       setTimeout(function () { try { ctx.close(); } catch (e) {} }, 2500);
     } catch (e) { /* sound is a nice-to-have; never block the page */ }

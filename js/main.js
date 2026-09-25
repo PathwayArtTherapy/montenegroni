@@ -78,10 +78,12 @@
   form.querySelectorAll('input[name="plan"]').forEach(function (r) {
     r.addEventListener('change', function () {
       applyPlan();
-      // Bring the newly revealed fields into view on phones.
-      if (window.innerWidth < 800) {
-        setTimeout(function () { fields.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60);
-      }
+      // Glide down to the Name(s) box and put the cursor there, ready to type.
+      var nameField = document.getElementById('f-name');
+      setTimeout(function () {
+        nameField.closest('.field').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(function () { nameField.focus({ preventScroll: true }); }, 450);
+      }, 60);
     });
   });
 
