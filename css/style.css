@@ -506,3 +506,22 @@ html.env-lock, html.env-lock body { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .env-hint { animation: none; opacity: 1; }
 }
+
+/* Envelope intro: the card unfolds to show the photo */
+.env-letter { display: flex; flex-direction: column; transition: transform .9s cubic-bezier(.2,.8,.25,1), top .8s ease, height .8s ease; }
+.env-letter-inner { flex: 1 1 auto; min-height: 0; }
+.env-letter-photo {
+  display: block; width: 74%; margin: 6% auto 0; max-height: 0; opacity: 0; overflow: hidden;
+  border-radius: 999px 999px 0 0; border: 1px solid var(--gold); box-shadow: 0 0 0 4px var(--white), 0 0 0 5px var(--gold);
+  transition: max-height .8s ease, opacity .6s ease .25s;
+}
+.env-letter-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 30% 28%; transform: scale(1.24); transform-origin: 18% 30%; }
+.env-front, .env-back, .env-flap { transition: opacity .6s ease; }
+.env-flap { transition: transform .75s cubic-bezier(.4,.1,.3,1), opacity .6s ease; }
+
+.envelope-intro.letter-present .env-front,
+.envelope-intro.letter-present .env-back,
+.envelope-intro.letter-present .env-flap { opacity: 0; }
+.envelope-intro.letter-present .env-letter { z-index: 6; top: -46%; height: 186%; transform: none; box-shadow: 0 20px 40px rgba(0,0,0,.35); padding-bottom: 9%; }
+.envelope-intro.letter-present .env-letter-photo { flex: 0 0 auto; aspect-ratio: 4 / 5; max-height: 1000px; opacity: 1; margin-top: 5%; margin-bottom: auto; }
+.envelope-intro.letter-present .env-letter-inner { flex: 0 0 auto; }

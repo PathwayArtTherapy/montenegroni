@@ -24,6 +24,7 @@
             '<span class="env-letter-kicker">Save the date</span>' +
             '<span class="env-letter-names">Lou Lou<i>&amp;</i>Dylan</span>' +
             '<span class="env-letter-place">Perast · June 2027</span>' +
+            '<span class="env-letter-photo"><img src="assets/intro-hands.jpg" alt="" width="360" height="540"></span>' +
           '</span>' +
         '</span>' +
         '<svg class="env-front" viewBox="0 0 400 280" preserveAspectRatio="none" aria-hidden="true">' +
@@ -57,7 +58,7 @@
   var btn = overlay.querySelector('.env');
   var opened = false;
   // Keyboard: Enter or Space opens it too.
-  function onKey(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } }
+  function onKey(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tap(); } }
   document.addEventListener('keydown', onKey);
 
   function open() {
@@ -69,10 +70,15 @@
     setTimeout(function () { overlay.classList.add('flap-open'); }, 280);  // flap swings up
     setTimeout(function () { overlay.classList.add('flap-behind'); }, 700); // flap tucks behind the letter
     setTimeout(function () { overlay.classList.add('letter-out'); }, 900);  // letter rises
-    finish(2300);
+    setTimeout(function () { overlay.classList.add('letter-present'); presenting = true; }, 1750); // envelope fades, card unfolds with the photo
+    finish(5200);
   }
+  var presenting = false, finished = false, finishTimer = null;
   function finish(delay) {
-    setTimeout(function () {
+    clearTimeout(finishTimer);
+    finishTimer = setTimeout(function () {
+      if (finished) return;
+      finished = true;
       overlay.classList.add('is-gone');
       document.documentElement.classList.remove('env-lock');
       document.removeEventListener('keydown', onKey);
@@ -80,6 +86,8 @@
     }, delay);
   }
 
-  btn.addEventListener('click', open);
-  overlay.addEventListener('click', function (e) { if (e.target === overlay) open(); });
+  // First tap opens; a tap while the card is showing skips straight to the page.
+  function tap() { if (!opened) open(); else if (presenting) finish(0); }
+  btn.addEventListener('click', tap);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) tap(); });
 })();
