@@ -64,6 +64,7 @@
   function open() {
     if (opened) return;
     opened = true;
+    if (window.startSong) window.startSong();
     window.scrollTo(0, 0);
     if (reduce) { finish(0); return; }
     overlay.classList.add('is-opening');                               // seal pops, hint fades

@@ -525,3 +525,19 @@ html.env-lock, html.env-lock body { overflow: hidden; }
 .envelope-intro.letter-present .env-letter { z-index: 6; top: -46%; height: 186%; transform: none; box-shadow: 0 20px 40px rgba(0,0,0,.35); padding-bottom: 9%; }
 .envelope-intro.letter-present .env-letter-photo { flex: 0 0 auto; aspect-ratio: 4 / 5; max-height: 1000px; opacity: 1; margin-top: 5%; margin-bottom: auto; }
 .envelope-intro.letter-present .env-letter-inner { flex: 0 0 auto; }
+
+/* Music mute button (appears only while the song plays) */
+.music-toggle {
+  position: fixed; left: 14px; bottom: calc(86px + env(safe-area-inset-bottom)); z-index: 350;
+  width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--gold);
+  background: var(--navy); color: var(--lemon); display: grid; place-items: center; cursor: pointer;
+  box-shadow: 0 0 0 3px var(--navy), 0 0 0 4px var(--gold), 0 8px 18px rgba(0,0,0,.25);
+  opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease;
+}
+@media (min-width: 800px) { .music-toggle { bottom: 20px; left: 20px; } }
+.music-toggle.is-shown { opacity: 1; transform: none; }
+.music-toggle svg { width: 22px; height: 22px; }
+.music-toggle .icon-off { display: none; }
+.music-toggle.is-muted .icon-on { display: none; }
+.music-toggle.is-muted .icon-off { display: block; }
+.music-toggle:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
