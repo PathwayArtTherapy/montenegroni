@@ -555,3 +555,9 @@ html.env-lock, html.env-lock body { overflow: hidden; }
 .hint-under-pair { margin-top: -8px; }
 
 .cal-label { text-align: center; margin: 0 0 12px; font: 700 .72rem/1 var(--body); letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+
+/* Links list inside an FAQ answer */
+.faq-links { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.faq-links li { padding-left: 18px; position: relative; }
+.faq-links li::before { content: ""; position: absolute; left: 2px; top: .6em; width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
+.faq-links a { color: var(--navy); font-weight: 700; text-decoration-color: var(--gold); text-underline-offset: 3px; }
