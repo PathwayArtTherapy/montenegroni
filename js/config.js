@@ -20,7 +20,7 @@ window.SITE_CONFIG = {
 
   // Google Sheet that collects every RSVP as a row (see tools/google-sheet-script.gs).
   // Paste the Apps Script web app URL here. Leave as "" to switch it off.
-  SHEET_URL: "",
+  SHEET_URL: "https://script.google.com/macros/s/AKfycby2C9SmpE25YmYXhhxhHiLcXmregakRwD3SNGF0ggo8JWUNzbgTKSFZV8R6Znx2tXBV/exec",
 
   // House cost, shown on the page. Plain text, write it how you'd say it.
   HOUSE_COST_NOTE: "$600 AUD per person ($1,200 per couple) for the 7 nights",
