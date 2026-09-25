@@ -561,3 +561,8 @@ html.env-lock, html.env-lock body { overflow: hidden; }
 .faq-links li { padding-left: 18px; position: relative; }
 .faq-links li::before { content: ""; position: absolute; left: 2px; top: .6em; width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
 .faq-links a { color: var(--navy); font-weight: 700; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+
+/* Cover card: "and you're invited!" */
+.hero-invited { font-family: var(--script); font-size: clamp(1.9rem, 8vw, 2.5rem); line-height: 1.1; color: var(--gold); margin: 8px 0 0; }
+.hero-cover .hero-sub { margin-bottom: 0; }
+.route-badge { width: 78px; height: 56px; }
