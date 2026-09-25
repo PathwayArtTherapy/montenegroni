@@ -431,3 +431,4 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 8px); }
 .details-card .deco-inner { padding-top: 30px; }
 .details-title { font-family: var(--display); font-weight: 400; font-size: clamp(1.7rem, 7vw, 2.3rem); letter-spacing: .08em; margin: 0 0 10px; }
 .details-section .hero-copy { margin-top: 40px; }
+.photo-band { scroll-margin-top: var(--topbar-h); }
