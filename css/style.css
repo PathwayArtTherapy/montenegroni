@@ -316,6 +316,7 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 8px); }
 .gallery-intro { position: relative; text-align: center; padding: 44px 0 40px; overflow: hidden; }
 .gallery-title { font-family: var(--script); font-weight: 400; font-size: clamp(4rem, 18vw, 6.5rem); line-height: 1; margin: 0 0 10px; }
 .gallery-lead { max-width: 520px; margin: 0 auto; font-size: 1.05rem; }
+.gallery-hint { margin: 10px 0 0; font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
 
 .gal-open { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; color: inherit; }
 .gal-open:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
