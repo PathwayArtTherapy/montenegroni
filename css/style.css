@@ -386,3 +386,16 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 8px); }
 .cal-row { max-width: 560px; }
 .wa-group .btn, .cal-row .btn { width: 100%; height: 100%; text-align: center; }
 .faq-body .wa-group { margin-left: 0; }
+
+/* Small clickable photo previews linking to the gallery */
+.house-note, .note-box { display: flow-root; }
+.preview-photo { float: right; width: 116px; margin: 0 0 10px 16px; text-decoration: none; color: var(--navy); text-align: center; }
+@media (min-width: 560px) { .preview-photo { width: 150px; margin-left: 22px; } }
+.preview-frame { display: block; aspect-ratio: 1 / 1; overflow: hidden; border: 2px solid var(--gold); box-shadow: 0 0 0 3px var(--white), 0 0 0 4px var(--navy); }
+.preview-arch .preview-frame { aspect-ratio: 3 / 4; border-radius: 999px 999px 0 0; }
+.note-box .preview-frame { box-shadow: 0 0 0 3px var(--lemon), 0 0 0 4px var(--navy); }
+.preview-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.preview-photo:hover .preview-frame img, .preview-photo:focus-visible .preview-frame img { transform: scale(1.06); }
+.preview-photo:focus-visible { outline: 3px solid var(--gold); outline-offset: 6px; }
+.preview-label { display: block; margin-top: 10px; font: 700 .62rem/1.2 var(--body); letter-spacing: .18em; text-transform: uppercase; }
+.preview-label::after { content: " \2192"; }
