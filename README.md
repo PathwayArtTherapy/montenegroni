@@ -69,10 +69,3 @@ Then open http://localhost:8125.
 - [ ] Photos of Perast or the house (optional)
 - [ ] Final check of travel times and entry rules
 
-## Music on the envelope
-
-When someone taps to open the envelope, a song plays for 20 seconds and then fades out. A small speaker button lets them mute it.
-
-To use your own song, put the file in `assets/audio/` (an `.m4a` or `.mp3`) and change `MUSIC.FILE` in `js/config.js` to point at it. `START_AT_SECONDS` skips an intro and `PLAY_SECONDS` sets how long it plays. Set `FILE` to `""` to turn music off.
-
-Files from the iTunes Store work. Songs downloaded inside Apple Music or Spotify are locked to those apps and won't play on a website.

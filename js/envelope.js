@@ -55,6 +55,68 @@
   document.documentElement.classList.add('env-lock');
   document.body.appendChild(overlay);
 
+  /* A little paper sound, made on the spot (no audio file):
+     a soft snap as the seal breaks, a rustle as the flap lifts,
+     and a gentle slide as the card comes out. */
+  function playEnvelopeSound() {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    try {
+      var ctx = new AC();
+      if (ctx.state === 'suspended') ctx.resume();
+      var sr = ctx.sampleRate;
+      var noise = ctx.createBuffer(1, Math.floor(sr * 2), sr);
+      var d = noise.getChannelData(0);
+      for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      var master = ctx.createGain();
+      master.gain.value = 0.55;
+      master.connect(ctx.destination);
+      var t0 = ctx.currentTime + 0.02;
+
+      function burst(start, dur, freq, q, peak, shape) {
+        var src = ctx.createBufferSource();
+        src.buffer = noise;
+        var bp = ctx.createBiquadFilter();
+        bp.type = 'bandpass'; bp.frequency.value = freq; bp.Q.value = q;
+        var g = ctx.createGain();
+        g.gain.setValueAtTime(0, start);
+        shape(g.gain, start, dur, peak);
+        src.connect(bp).connect(g).connect(master);
+        src.start(start, Math.random() * 0.5, dur + 0.05);
+        return bp;
+      }
+      function snap(p, s, dur, peak) { p.linearRampToValueAtTime(peak, s + 0.004); p.exponentialRampToValueAtTime(0.001, s + dur); }
+      function crinkle(p, s, dur, peak) {
+        // uneven little grains of paper noise
+        var steps = Math.floor(dur / 0.018);
+        for (var k = 0; k <= steps; k++) {
+          var tt = s + k * 0.018;
+          var env = Math.sin(Math.PI * k / steps);
+          p.linearRampToValueAtTime(peak * env * (0.35 + Math.random() * 0.65), tt);
+        }
+        p.linearRampToValueAtTime(0, s + dur + 0.02);
+      }
+      function slide(p, s, dur, peak) {
+        p.linearRampToValueAtTime(peak, s + dur * 0.35);
+        p.linearRampToValueAtTime(peak * 0.6, s + dur * 0.8);
+        p.linearRampToValueAtTime(0, s + dur);
+      }
+
+      // 1. The seal breaking: a quick crack, low thump underneath.
+      burst(t0, 0.06, 2400, 1.2, 0.9, snap);
+      burst(t0, 0.09, 380, 1.0, 0.5, snap);
+      // 2. The flap lifting: a papery rustle.
+      burst(t0 + 0.28, 0.55, 3200, 0.8, 0.28, crinkle);
+      burst(t0 + 0.30, 0.50, 6500, 1.0, 0.12, crinkle);
+      // 3. The card sliding out: a soft, smooth swish that rises in pitch.
+      var bp = burst(t0 + 0.9, 0.8, 1200, 0.7, 0.2, slide);
+      bp.frequency.setValueAtTime(900, t0 + 0.9);
+      bp.frequency.linearRampToValueAtTime(2600, t0 + 1.7);
+
+      setTimeout(function () { try { ctx.close(); } catch (e) {} }, 2500);
+    } catch (e) { /* sound is a nice-to-have; never block the page */ }
+  }
+
   var btn = overlay.querySelector('.env');
   var opened = false;
   // Keyboard: Enter or Space opens it too.
@@ -64,7 +126,7 @@
   function open() {
     if (opened) return;
     opened = true;
-    if (window.startSong) window.startSong();
+    playEnvelopeSound();
     window.scrollTo(0, 0);
     if (reduce) { finish(0); return; }
     overlay.classList.add('is-opening');                               // seal pops, hint fades
