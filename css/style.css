@@ -374,3 +374,13 @@ section[id] { scroll-margin-top: calc(var(--topbar-h) + 8px); }
   .brand { font-size: 1rem; }
   .topnav a { padding: 8px 5px; font-size: .66rem; letter-spacing: .06em; }
 }
+
+/* Even, same-size button pairs (WhatsApp and add-to-calendar) */
+.wa-group, .cal-row {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;
+  margin-left: auto; margin-right: auto;
+}
+.wa-group { max-width: 380px; }
+.cal-row { max-width: 560px; }
+.wa-group .btn, .cal-row .btn { width: 100%; height: 100%; text-align: center; }
+.faq-body .wa-group { margin-left: 0; }
