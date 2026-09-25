@@ -1,15 +1,20 @@
 /* ============================================================
-   "Tap to open" envelope intro.
-   Currently only shown when the address ends in ?envelope
-   (preview mode). To switch it on for everyone, set
-   ENVELOPE_ALWAYS to true below.
+   "Tap seal to open" envelope intro.
+   Shown once per visit (per browser tab session). It's skipped
+   when a link jumps straight to a section, e.g. montenegroni.site/#rsvp.
+   Add ?envelope to the address to see it again while testing.
+   Set ENVELOPE_ON to false to switch it off entirely.
    ============================================================ */
 (function () {
   'use strict';
-  var ENVELOPE_ALWAYS = false;
+  var ENVELOPE_ON = true;
+  var SEEN_KEY = 'envelopeOpened';
 
-  var wanted = ENVELOPE_ALWAYS || /[?&]envelope\b/.test(location.search);
-  if (!wanted) return;
+  var forced = /[?&]envelope\b/.test(location.search);
+  var seen = false;
+  try { seen = sessionStorage.getItem(SEEN_KEY) === '1'; } catch (e) {}
+  var jumpingToSection = !!location.hash && location.hash !== '#home';
+  if (!forced && (!ENVELOPE_ON || seen || jumpingToSection)) return;
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -126,6 +131,7 @@
   function open() {
     if (opened) return;
     opened = true;
+    try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (e) {}
     playEnvelopeSound();
     window.scrollTo(0, 0);
     if (reduce) { finish(0); return; }
