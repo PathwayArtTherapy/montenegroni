@@ -565,4 +565,4 @@ html.env-lock, html.env-lock body { overflow: hidden; }
 /* Cover card: "and you're invited!" */
 .hero-invited { font-family: var(--script); font-size: clamp(1.9rem, 8vw, 2.5rem); line-height: 1.1; color: var(--gold); margin: 8px 0 0; }
 .hero-cover .hero-sub { margin-bottom: 0; }
-.route-badge { width: 78px; height: 56px; }
+.route-badge { width: 100px; height: 58px; }
