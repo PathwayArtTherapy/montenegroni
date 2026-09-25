@@ -182,9 +182,16 @@
   function finish(plan) {
     form.hidden = true;
     document.getElementById('thanks-house').hidden = plan !== 'house';
-    if (plan === 'cant') {
-      document.getElementById('thanks-copy').textContent = "We'll miss you! Thanks for letting us know, and sending love right back.";
+    // Pick one of the fun thank-you messages from js/config.js at random.
+    var msgs = (cfg.THANK_YOU || {})[plan === 'cant' ? 'CANT_MAKE_IT' : 'COMING'] || [];
+    if (msgs.length) {
+      var m = msgs[Math.floor(Math.random() * msgs.length)];
+      document.getElementById('thanks-title').textContent = m.title;
+      document.getElementById('thanks-copy').textContent = m.text;
     }
+    document.getElementById('thanks-small').textContent = plan === 'cant'
+      ? 'Thanks for letting us know. Sending love right back.'
+      : "We'll be in touch closer to the time with more details.";
     thanks.hidden = false;
     thanks.focus({ preventScroll: true });
     thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });

@@ -23,6 +23,21 @@ window.SITE_CONFIG = {
   HOUSE_EOI_DEADLINE: "before November 2026",
   RSVP_DEADLINE: "by December 2026",
 
+  // Thank-you messages after someone RSVPs. One is picked at random each time.
+  // Add, remove or reword as many as you like.
+  THANK_YOU: {
+    COMING: [
+      { title: "Euro summer, baby!", text: "We can't wait to have a negroni with you!" },
+      { title: "Živjeli!", text: "That's cheers in Montenegrin. We can't wait to raise a glass with you by the water!" },
+      { title: "See you in Perast!", text: "Pack the silks and the sunscreen. The first spritz is on us." },
+      { title: "Top 3 buttons open!", text: "You're in. Start planning the outfit, and we'll have the negronis ready." },
+    ],
+    CANT_MAKE_IT: [
+      { title: "We'll miss you!", text: "You'll be there in spirit, and we will have a drink for you!" },
+      { title: "A negroni in your honour", text: "You'll be there in spirit, and we will have a drink for you by the water." },
+    ],
+  },
+
   // The countdown target: the main celebration day, Perast time.
   CELEBRATION_DATE: "2027-06-26T00:00:00+02:00",
 };
