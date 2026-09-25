@@ -35,13 +35,13 @@ The free plan allows 50 submissions a month. If the guest list is bigger than th
 
 **Alternative: Google Sheets via Apps Script (free, unlimited).** Create a Google Sheet, open Extensions → Apps Script, paste a small `doPost` that appends the JSON fields to a row and calls `MailApp.sendEmail`, deploy as a Web App ("Anyone" can access), and put the web-app URL in `FORM_ENDPOINT`. More setup, but no limits and the answers land straight in a sheet.
 
-While `FORM_ENDPOINT` is empty, the form pretends to send (and logs the answers to the browser console) so the page can be tested.
+While `FORM_ENDPOINT` is empty, the form only pretends to send on a local preview. On the live site it tells guests to message you on WhatsApp instead, so nobody thinks they've RSVP'd when nothing was sent.
 
 ## Link preview image
 
 WhatsApp shows `assets/og-image.png` when the link is shared. To regenerate it after changing the wording, open `tools/og-card.html` in a browser, right-click the card and save it as `assets/og-image.png`.
 
-Once the site is live, replace `https://SITE_URL` in the `og:image` tag near the top of `index.html` with the real address, because link previews need a full URL.
+The link-preview tags point at https://montenegroni.site. If the domain ever changes, update the `og:image` and `og:url` tags at the top of `index.html` and `gallery.html`, and the `CNAME` file.
 
 ## Hosting
 

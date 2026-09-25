@@ -150,9 +150,17 @@
     submitBtn.textContent = 'Sending…';
 
     if (!endpoint) {
-      // Not connected yet: behave as if it worked so the page can be tested.
-      console.warn('FORM_ENDPOINT is empty in js/config.js. Submission not sent:', payload);
-      setTimeout(function () { finish(plan); }, 500);
+      var isLocal = /^(localhost|127\.0\.0\.1|)$/.test(location.hostname);
+      if (isLocal) {
+        // Local preview only: behave as if it worked so the page can be tested.
+        console.warn('FORM_ENDPOINT is empty in js/config.js. Submission not sent:', payload);
+        setTimeout(function () { finish(plan); }, 500);
+      } else {
+        // Live site with no form service connected: never pretend it sent.
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send it';
+        showError('Online RSVPs are opening very soon! For now, please message Lou Lou or Dylan on WhatsApp.');
+      }
       return;
     }
 
