@@ -134,7 +134,8 @@
     setTimeout(function () { overlay.classList.add('flap-behind'); }, 700); // flap tucks behind the letter
     setTimeout(function () { overlay.classList.add('letter-out'); }, 900);  // letter rises
     setTimeout(function () { overlay.classList.add('letter-present'); presenting = true; }, 2500); // envelope fades, card unfolds with the photo
-    finish(5900);
+    // The card finishes unfolding at about 3.3s; hold it for 2.5s, then show the page.
+    finish(3300 + 2500);
   }
   var presenting = false, finished = false, finishTimer = null;
   function finish(delay) {
@@ -142,6 +143,7 @@
     finishTimer = setTimeout(function () {
       if (finished) return;
       finished = true;
+      window.scrollTo(0, 0);
       overlay.classList.add('is-gone');
       document.documentElement.classList.remove('env-lock');
       document.removeEventListener('keydown', onKey);
