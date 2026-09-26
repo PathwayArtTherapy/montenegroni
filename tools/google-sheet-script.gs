@@ -61,11 +61,12 @@ function getSheet() {
   return sheet;
 }
 
-// Stops anything a guest types from being treated as a spreadsheet formula.
+// Keeps what guests type exactly as written: nothing is treated as a formula,
+// and phone numbers like 0412 345 678 keep their leading zero.
 function clean(value) {
   if (value === undefined || value === null) return '';
   const text = String(value).slice(0, 2000);
-  return /^[=+\-@]/.test(text) ? "'" + text : text;
+  return /^([=+\-@]|0\d)/.test(text) ? "'" + text : text;
 }
 
 function reply(text) {
