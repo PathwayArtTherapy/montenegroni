@@ -87,6 +87,13 @@
     });
   });
 
+  // A link like montenegroni.site/?plan=house#rsvp arrives with that option already ticked.
+  (function () {
+    var m = /[?&]plan=(house|week-own|saturday|cant)\b/.exec(location.search);
+    var radio = m && form.querySelector('input[name="plan"][value="' + m[1] + '"]');
+    if (radio) { radio.checked = true; applyPlan(); }
+  })();
+
   form.querySelectorAll('input[name="nights"]').forEach(function (r) {
     r.addEventListener('change', function () {
       nightsDetail.hidden = form.querySelector('input[name="nights"]:checked').value !== 'some';

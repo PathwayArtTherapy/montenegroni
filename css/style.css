@@ -566,3 +566,35 @@ html.env-lock, html.env-lock body { overflow: hidden; }
 .hero-invited { font-family: var(--script); font-size: clamp(1.9rem, 8vw, 2.5rem); line-height: 1.1; color: var(--gold); margin: 8px 0 0; }
 .hero-cover .hero-sub { margin-bottom: 0; }
 .route-badge { width: 100px; height: 58px; }
+
+/* ============================================================
+   LETTER PAGE (montenegroni.site/house/)
+   ============================================================ */
+.letter-page { position: relative; overflow: hidden; padding: 32px 0 48px; }
+.letter-page > :not(.sunburst) { position: relative; z-index: 1; }
+.letter .deco-inner { padding: 30px 20px 34px; }
+@media (min-width: 560px) { .letter .deco-inner { padding: 40px 44px 44px; } }
+.letter-title { font-family: var(--script); font-weight: 400; font-size: clamp(2.6rem, 11vw, 3.8rem); line-height: 1.05; margin: 6px 0 18px; }
+.letter-photo { display: block; width: min(100%, 360px); margin: 0 auto 22px; aspect-ratio: 4 / 3; overflow: hidden;
+  border-radius: 999px 999px 0 0; border: 2px solid var(--gold); box-shadow: 0 0 0 5px var(--white), 0 0 0 6px var(--gold); }
+.letter-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.letter-photo:hover img { transform: scale(1.04); }
+.letter-body { text-align: left; max-width: 480px; margin: 0 auto; }
+.letter-greeting { font-family: var(--deco); font-weight: 700; font-size: 1.35rem; text-align: center; margin-bottom: 10px; }
+.letter-deadline { text-align: center; font-size: 1.1rem; margin: 18px 0 12px; }
+.letter-countdown { display: flex; flex-direction: column; align-items: center; width: 120px; margin: 0 auto 22px; padding: 12px 8px 10px;
+  background: var(--navy); color: var(--lemon); border: 1px solid var(--gold); outline: 1px solid var(--gold); outline-offset: 3px; text-align: center; }
+.letter-countdown b { font-family: var(--display); font-weight: 400; font-size: 2.4rem; line-height: 1; color: var(--white); }
+.letter-countdown span { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; margin-top: 6px; }
+.letter-sub { font-family: var(--display); font-weight: 400; font-size: 1.6rem; letter-spacing: .06em; text-align: center; margin: 18px 0 12px; }
+.letter-list { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 9px; }
+.letter-list li { position: relative; padding-left: 20px; }
+.letter-list li::before { content: ""; position: absolute; left: 2px; top: .6em; width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
+.letter-note { font-size: .9rem; background: var(--lemon); padding: 10px 14px; }
+.letter-actions { display: grid; gap: 12px; margin: 22px 0 18px; }
+.letter-actions .btn { width: 100%; }
+.letter-small { font-size: .9rem; opacity: .85; text-align: center; }
+.letter-signoff { text-align: center; font-family: var(--deco); font-weight: 700; font-size: 1.15rem; margin: 24px 0 4px; }
+.letter-names { text-align: center; font-family: var(--script); font-size: 2.4rem; line-height: 1.1; margin: 0; }
+.letter-names .amp { font-family: var(--display); font-size: .5em; color: var(--gold); vertical-align: middle; }
+.letter-names .x { color: var(--gold); }
